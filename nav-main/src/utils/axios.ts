@@ -18,12 +18,13 @@ const errorHandler = (status: number) => {
 }
 
 const myAxios = axios.create({
-  baseURL: 'http://127.0.0.1:5173',
+  // baseURL: 'http://127.0.0.1:5173',
   timeout: 5000,
 })
 
 myAxios.interceptors.request.use(
   function (config) {
+    config.headers['Access-Control-Allow-Origin'] = '*'
     const token = storage.get('TOKEN')
     token && (config.headers.Authorization = token)
     return config

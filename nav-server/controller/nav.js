@@ -1,12 +1,11 @@
-const navData = require("../model/navModel")
-const auditModel = require("../model/auditModel")
+const navData = require('../model/navModel')
+const auditModel = require('../model/auditModel')
 
 const nav = {
-
   async index(req, res) {
     try {
       const resData = await navData.find({})
-      res.json(resData)
+      res.json({ data: resData })
     } catch (error) {
       res.json(error)
     }
@@ -17,7 +16,7 @@ const nav = {
       const { auditId } = req.body
       delete req.body.auditId
       delete req.body._id
-      await auditModel.update({ _id: auditId }, {status: 1})
+      await auditModel.update({ _id: auditId }, { status: 1 })
       const resData = await navData.create(req.body)
       res.json(resData)
     } catch (error) {
@@ -49,24 +48,24 @@ const nav = {
   async info(req, res) {
     try {
       const { id } = req.body
-      const resData = await navData.aggregate([
-        {
-          $lookup:
+      const resData = await navData
+        .aggregate([
           {
-            from: "category",
-            localField: "categoryId",
-            foreignField: "_id",
-            as: "category"
-          }
-        }
-      ])
-      .match({
-        categoryId: id
-      })
+            $lookup: {
+              from: 'category',
+              localField: 'categoryId',
+              foreignField: '_id',
+              as: 'category',
+            },
+          },
+        ])
+        .match({
+          categoryId: id,
+        })
       res.json(resData)
     } catch (error) {
       res.json(error)
     }
-  }
+  },
 }
 module.exports = nav

@@ -4,12 +4,14 @@ const categories = Mock.mock({
   'data|20-30': [
     {
       name: '@ctitle(4)',
-      id: '@word(8)',
+      _id: '@word(8)',
+      categoryId: '@word(8)',
       icon: 'iconfont icon-youxishoubing',
       'children|2-4': [
         {
           name: '@ctitle(4)',
-          id: '@word(8)',
+          _id: '@word(8)',
+          categoryId: '@word(8)',
           icon: 'iconfont icon-qianduan',
         },
       ],
@@ -21,10 +23,12 @@ const navData = Mock.mock({
   'data|10-20': [
     {
       name: '@ctitle(4)',
-      id: '@word(8)',
+      _id: '@word(8)',
+      categoryId: '@word(8)',
       'list|5-10': [
         {
-          id: '@word(8)',
+          _id: '@word(8)',
+          categoryId: '@word(8)',
           name: '@ctitle(2,6)',
           logo: '//geekape-hangzhou.oss-cn-hangzhou.aliyuncs.com/geekape-nav/images/raspberry.png',
           desc: '@csentence(12, 20)',
@@ -38,13 +42,17 @@ const navData = Mock.mock({
 
 export default [
   {
-    url: '/data',
+    url: '/category/list',
     method: 'get',
     response: () => {
-      return {
-        categories: categories,
-        navData: navData,
-      }
+      return categories
+    },
+  },
+  {
+    url: '/index',
+    method: 'get',
+    response: () => {
+      return navData
     },
   },
 ]

@@ -8,6 +8,7 @@ const props = defineProps<{
 const isStar = ref(false)
 
 const handleNavStar = () => {
+  if (!props.data.star) return
   if (isStar.value) {
     props.data.star -= 1
     isStar.value = false

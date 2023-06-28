@@ -3,7 +3,7 @@ import NavItem from './NavItem.vue'
 import INavItem from '@/interfaces/INavItem'
 
 const props = defineProps<{
-  id: string
+  _id: string
   name: string
   list: INavItem[]
 }>()
@@ -16,11 +16,12 @@ const handleNavStar = () => {}
 
 <template>
   <div class="website-wrapper">
-    <p class="website-title" :id="id">{{ name }}</p>
+    <p class="website-title" :id="_id">{{ name }}</p>
     <el-row class="website" :gutter="20">
       <NavItem
         v-for="item in list"
         :data="item"
+        :key="item._id"
         @handleNavClick="handleNavClick"
         @handleNavStar="handleNavStar"></NavItem>
     </el-row>

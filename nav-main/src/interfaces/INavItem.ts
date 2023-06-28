@@ -1,8 +1,10 @@
 export default interface INavItem {
-  id: string
+  _id: string
+  categoryId: string
+  href: string
   name: string
-  logo: string
+  logo?: string
   desc: string
-  view: number
-  star: number
+  view?: number
+  star?: number
 }

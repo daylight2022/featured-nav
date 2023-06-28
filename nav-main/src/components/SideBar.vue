@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import ICategoryItem from '@/interfaces/ICategoryItem'
 
 const props = defineProps<{
-  categories: Array<any>
+  categories: Array<ICategoryItem>
   showMenuType: String
 }>()
+const emits = defineEmits(['handleSubMenuClick'])
 
 const defaultAcitve = ref('')
 
@@ -12,17 +14,16 @@ const sideBarWidth = computed(() => (props.showMenuType == 'half' ? '70px' : pro
 
 const isCollapse = computed(() => props.showMenuType == 'half')
 
-let selectCategoryId = ref('')
+let selectedCategoryId = ref('')
 
 const handleMenuItemClick = (parentId: string, id: string) => {
-  if (selectCategoryId.value == parentId) {
+  if (selectedCategoryId.value == parentId) {
     document.getElementById(id)?.scrollIntoView()
     return
   }
 
-  // TODO
-  // selectedCategoryId = parentId;
-  // proxy.$emit("selectedCategoryId", parentId, id);
+  selectedCategoryId.value = parentId
+  emits('handleSubMenuClick', parentId, id)
 }
 </script>
 
@@ -37,20 +38,20 @@ const handleMenuItemClick = (parentId: string, id: string) => {
               :collapse="isCollapse"
               class="el-menu-vertical-demo"
               background-color="#4700f1"
-              active-text-color="#a27cff"
+              active-text-color="#3900c1"
               text-color="#fff"
               unique-opened>
-              <el-sub-menu v-for="(item, index) in props.categories" :index="item.id" :key="item.id">
+              <el-sub-menu v-for="item in props.categories" :index="item._id" :key="item._id">
                 <template #title>
                   <i :class="item.icon ? item.icon : `el-icon-element icon-title`"></i>
                   <span>{{ item.name }}</span>
                 </template>
                 <el-menu-item
-                  v-for="(nav, childIdx) in item.children"
-                  :index="`${index}-${childIdx}`"
-                  @click="handleMenuItemClick(item.id, nav.id)">
+                  v-for="nav in item.children"
+                  :index="nav._id"
+                  @click="handleMenuItemClick(item._id, nav.categoryId)">
                   <template #title>
-                    <a :href="`#${nav.classify}`">
+                    <a :href="`#${nav._id}`">
                       <i :class="nav.icon"></i>
                       <span>{{ nav.name }}</span>
                     </a>
@@ -97,7 +98,6 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 }
 
 .el-aside {
-
   transition: all 0.3s;
   z-index: 99;
   position: fixed;
@@ -105,7 +105,7 @@ const handleMenuItemClick = (parentId: string, id: string) => {
   left: 0;
   bottom: 0;
   overflow: hidden;
-  
+
   .el-menu-vertical-demo.el-menu {
     height: 100vh;
     overflow-y: auto;
@@ -143,6 +143,11 @@ const handleMenuItemClick = (parentId: string, id: string) => {
   }
 }
 
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+
 .el-menu--collapse .el-submenu__title span {
   display: none;
 }
@@ -155,7 +160,7 @@ const handleMenuItemClick = (parentId: string, id: string) => {
       color: #fff;
     }
     &:hover {
-      background-color: rgb(57, 0, 193);
+      background-color: #3900c1;
     }
   }
 }

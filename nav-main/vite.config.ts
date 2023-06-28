@@ -1,17 +1,17 @@
-import { defineConfig,UserConfigExport, ConfigEnv } from 'vite'
+import { defineConfig, UserConfigExport, ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import {viteMockServe} from 'vite-plugin-mock'
+import { viteMockServe } from 'vite-plugin-mock'
 
 function pathResolve(dir: string) {
   return resolve(__dirname, dir)
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({command, mode}) => ({
+export default defineConfig(({ command, mode }) => ({
   plugins: [
     vue(), // ...
     viteMockServe({
@@ -38,6 +38,16 @@ export default defineConfig(({command, mode}) => ({
       scss: {
         additionalData: "@import '@/assets/styles/_mixins.scss';",
       },
+    },
+  },
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     }
-  }
+  },
 }))
