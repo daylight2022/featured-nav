@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, inject, onMounted } from 'vue'
-import NavList from '@/components/NavList.vue'
 import INavItem from '@/interfaces/INavItem'
 import ICategoryItem from '@/interfaces/ICategoryItem'
 import SideBar from '@/components/SideBar.vue'
@@ -74,7 +73,7 @@ function showMenu() {
   }
 }
 </script>
-
+b
 <template>
   <el-container class="user-layout">
     <SideBar
@@ -84,9 +83,7 @@ function showMenu() {
       @handleSubMenuClick="handleSubMenuClick"></SideBar>
     <el-container class="content" :style="{ marginLeft: contentMarginLeft }">
       <NavHeader class="header"></NavHeader>
-      <div class="main">
-        <nav-list v-for="item in navData" :_id="item._id" :name="item.name" :list="item.list"></nav-list>
-      </div>
+      <RouterView :navData="navData" />
       <NavFooter class="footer"></NavFooter>
     </el-container>
   </el-container>
@@ -99,12 +96,6 @@ function showMenu() {
     .header {
       position: relative;
     }
-
-    .main {
-      position: relative;
-      padding: 20px;
-    }
-
     .footer {
       position: relative;
       margin-top: 10px;

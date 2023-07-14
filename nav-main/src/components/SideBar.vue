@@ -28,7 +28,7 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 </script>
 
 <template>
-  <div>
+  <div class="sidebar-menu">
     <el-aside :style="{ width: sideBarWidth }">
       <slot name="sidebar">
         <el-row>
@@ -65,6 +65,15 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 
       <div class="sidebar-fix">
         <ul>
+          <li class="item">
+            <RouterLink to="/include"><i></i><span>收录申请</span></RouterLink>
+          </li>
+          <li class="item">
+            <RouterLink to="/links"><i></i><span>友链申请</span></RouterLink>
+          </li>
+          <li class="item">
+            <RouterLink to="/feedback"><i></i><span>留言板</span></RouterLink>
+          </li>
           <li class="item" @click="$emit('showMenu')">
             <el-icon v-if="!isCollapse" color="#fff" :size="20"><Fold /></el-icon>
             <el-icon v-else color="#fff" :size="20"><Expand /></el-icon>
@@ -94,8 +103,11 @@ const handleMenuItemClick = (parentId: string, id: string) => {
       color: #fff;
       font-size: 20px;
     }
+    span {
+      color: #fff;
+    }
   }
-}
+}  
 
 .el-aside {
   transition: all 0.3s;

@@ -23,7 +23,7 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div class="recommend-page">
+  <div class="links-page">
     <el-form ref="form" :model="form" label-width="100px" class="recommend-form">
       <el-form-item label="网页标题" prop="title">
         <el-input v-model="formData.title" placeholder="请输入网页标题"></el-input>
@@ -45,7 +45,7 @@ const submitForm = () => {
 </template>
 
 <style lang="scss" scoped>
-.recommend-page {
+.links-page {
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@ const submitForm = () => {
   height: 100vh;
 }
 
-.recommend-form {
+.links-form {
   width: 400px;
 }
 </style>
