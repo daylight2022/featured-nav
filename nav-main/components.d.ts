@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElCollapseTransition: typeof import('element-plus/es')['ElCollapseTransition']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -25,12 +26,14 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Hotspots: typeof import('./src/components/Hotspots.vue')['default']
     NavFooter: typeof import('./src/components/NavFooter.vue')['default']
     NavHeader: typeof import('./src/components/NavHeader.vue')['default']
     NavItem: typeof import('./src/components/NavItem.vue')['default']
     NavList: typeof import('./src/components/NavList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Search: typeof import('./src/components/Search.vue')['default']
     SideBar: typeof import('./src/components/SideBar.vue')['default']
   }
 }

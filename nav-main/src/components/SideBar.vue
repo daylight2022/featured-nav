@@ -28,7 +28,7 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 </script>
 
 <template>
-  <div class="sidebar-menu">
+  <div class="sidebar">
     <el-aside :style="{ width: sideBarWidth }">
       <slot name="sidebar">
         <el-row>
@@ -85,6 +85,9 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 </template>
 
 <style lang="scss" scoped>
+.sidebar {
+  // width: 100%;
+}
 .sidebar-fix {
   position: absolute;
   left: 0;
@@ -107,15 +110,17 @@ const handleMenuItemClick = (parentId: string, id: string) => {
       color: #fff;
     }
   }
-}  
+}
 
 .el-aside {
   transition: all 0.3s;
   z-index: 99;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  bottom: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // bottom: 0;
   overflow: hidden;
 
   .el-menu-vertical-demo.el-menu {
@@ -156,7 +161,7 @@ const handleMenuItemClick = (parentId: string, id: string) => {
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 220px;
   min-height: 400px;
 }
 

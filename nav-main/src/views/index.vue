@@ -59,21 +59,21 @@ onMounted(async () => {
 })
 
 let showMenuType = ref('all')
-let contentMarginLeft = ref('220px')
+// let contentMarginLeft = ref('220px')
 
 function handleSubMenuClick() {}
 
 function showMenu() {
   if (showMenuType.value == 'half') {
     showMenuType.value = 'all'
-    contentMarginLeft.value = '220px'
+    // contentMarginLeft.value = '220px'
   } else {
     showMenuType.value = 'half'
-    contentMarginLeft.value = '70px'
+    // contentMarginLeft.value = '70px'
   }
 }
 </script>
-b
+
 <template>
   <el-container class="user-layout">
     <SideBar
@@ -81,25 +81,21 @@ b
       :show-menu-type="showMenuType"
       @showMenu="showMenu"
       @handleSubMenuClick="handleSubMenuClick"></SideBar>
-    <el-container class="content" :style="{ marginLeft: contentMarginLeft }">
-      <NavHeader class="header"></NavHeader>
+    <el-container class="container">
+      <NavHeader></NavHeader>
       <RouterView :navData="navData" />
-      <NavFooter class="footer"></NavFooter>
+      <NavFooter></NavFooter>
     </el-container>
   </el-container>
 </template>
 
 <style lang="scss" scoped>
 .user-layout {
-  .content {
+  display: flex;
+  .container {
+    display: flex;
+    flex-direction: column;
     transition: all 0.3s;
-    .header {
-      position: relative;
-    }
-    .footer {
-      position: relative;
-      margin-top: 10px;
-    }
   }
 }
 </style>
