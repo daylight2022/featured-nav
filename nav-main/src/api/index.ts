@@ -7,6 +7,10 @@ const api = {
   getNavData() {
     return axios.get('/api/index')
   },
+
+  getHotspots() {
+    return axios.get('/api/hotspots')
+  },
 }
 
 export default api

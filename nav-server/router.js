@@ -29,6 +29,8 @@ router.post('/category/del', controller.category.del)
 router.post('/category/edit', controller.category.edit)
 router.get('/category/list', controller.category.list)
 
+router.get('/hotspots', controller.somedata.getHotspotsData)
+
 router.post('/login', controller.user.login)
 
 // 处理 404

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavList from '@/components/NavList.vue'
 import INavItem from '@/interfaces/INavItem'
-import Search from '@/components/Search.vue';
+import Search from '@/components/Search.vue'
 import Hotspots from '@/components/Hotspots.vue'
 
 const props = defineProps<{
