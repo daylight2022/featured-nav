@@ -7,4 +7,5 @@ export default interface INavItem {
   desc: string
   view?: number
   star?: number
+  createAd?: number
 }

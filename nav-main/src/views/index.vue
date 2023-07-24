@@ -5,6 +5,7 @@ import ICategoryItem from '@/interfaces/ICategoryItem'
 import SideBar from '@/components/SideBar.vue'
 import NavHeader from '@/components/NavHeader.vue'
 import NavFooter from '@/components/NavFooter.vue'
+import { ElMessage } from 'element-plus';
 
 const $api: any = inject('$api')
 
@@ -55,6 +56,7 @@ onMounted(async () => {
     })
     .catch((error: any) => {
       console.error('请求错误', error)
+      ElMessage.error('Failed to fetch data')
     })
 })
 

@@ -24,7 +24,8 @@ module.exports = {
       const hotspots = response.data
       return hotspots
     } catch (error) {
-      console.log('Failed to fetch Baidu hotspots', error)
+      console.error('Failed to fetch Baidu hotspots', error)
+      return null
     }
   },
   getDouyinHotspots: async () => {
@@ -33,7 +34,8 @@ module.exports = {
       const hotspots = response.data
       return hotspots
     } catch (error) {
-      console.log('Failed to fetch Douyin hotspots', error)
+      console.error('Failed to fetch Douyin hotspots', error)
+      return null
     }
   },
   getWeiboHotspots: async () => {
@@ -42,7 +44,8 @@ module.exports = {
       const hotspots = response.data
       return hotspots
     } catch (error) {
-      console.log('Failed to fetch Weibo hotspots', error)
+      console.error('Failed to fetch Weibo hotspots', error)
+      return null
     }
   },
   getHistoryToday: async () => {
@@ -51,7 +54,8 @@ module.exports = {
       const hotspots = response.data
       return hotspots
     } catch (error) {
-      console.log('Failed to fetch history today hotspots', error)
+      console.error('Failed to fetch history today hotspots', error)
+      return null
     }
   },
 }

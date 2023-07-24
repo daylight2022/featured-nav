@@ -10,6 +10,8 @@ module.exports = {
         HotspotsController.getHistoryToday(),
       ])
 
+      historyToday.subtitle = ''
+
       // 返回实时热点数据
       res.status(200).json({
         baiduHotspots,

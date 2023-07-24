@@ -18,6 +18,7 @@ const category = {
   },
   async add(req, res) {
     try {
+      console.log(req.body);
       const resData = await categoryModel.create(req.body)
       res.json(resData)
     } catch (error) {
